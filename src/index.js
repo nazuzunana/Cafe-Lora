@@ -75,9 +75,15 @@ const drinks = [
   },
 ];
 
-const drinksListElm = document.querySelector('.drinks-list');
-
-drinks.forEach((drink) => drinksListElm.appendChild(Drink(drink)));
+fetch('https://apps.kodim.cz/daweb/cafelora/api/drinks')
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+    const drinksListElm = document.querySelector('.drinks-list');
+    data.results.forEach((drink) => drinksListElm.appendChild(Drink(drink)));
+  });
 
 /*const ingredient1 = {
   color: '#feeeca',
